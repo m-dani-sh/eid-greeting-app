@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Eid Mubarak 🌙 Wish Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<link rel="stylesheet" href="style.css">
+<script src="firebase.js"></script>
+<script src="script.js"></script>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<canvas id="fw-canvas"></canvas>
+<div id="toast"></div>
+
+<div id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div style="font-size:2.5rem;margin-bottom:1rem">🎁</div>
+    <div class="modal-title">Eid Mubarak!</div>
+    <div class="modal-body">
+      May Allah fill your life with happiness, bless every path you walk, and grant all your heartfelt wishes this Eid. 🌙✨
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- GENERATOR SECTION -->
+  <section id="gen-section">
+    <div class="moon-wrap">
+      <div class="moon"></div>
+      <div class="moon-shadow"></div>
+    </div>
+    <div class="glass-card">
+      <p class="pre-title">✦ Personalize Your Greeting ✦</p>
+      <h1 class="card-title">Create Your Eid Wish</h1>
+      <p class="card-sub">Enter a name to generate a personal Eid greeting</p>
+      <input class="name-input" id="name-input" type="text" placeholder="Enter name here..." maxlength="40" autocomplete="off"/>
+      <button class="gen-btn" onclick="generateWish()">Generate Wish 🌙</button>
+      <div id="share-panel">
+        <div class="share-url" id="share-url-text"></div>
+        <div class="share-btns">
+          <button class="share-btn" onclick="copyLink()">📋 Copy Link</button>
+          <button class="share-btn wa" onclick="shareWA()" id="wa-btn">💬 WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WISH SECTION -->
+  <section id="wish-section">
+    <div class="moon-wrap">
+      <div class="moon"></div>
+      <div class="moon-shadow"></div>
+    </div>
+    <h1 class="wish-heading" id="wish-heading">Eid Mubarak 🌙</h1>
+    <p class="wish-sub" id="wish-sub">May this blessed day bring you joy &amp; peace</p>
+    <div class="geo-border"></div>
+    <div class="msg-card">
+      <div class="arabic-decor">عيد مبارك</div>
+      <p class="msg-text" id="wish-msg">
+        On this beautiful occasion of Eid, may Allah shower you with endless blessings, fill your heart with happiness, and surround you with the warmth of family and friends. May all your prayers be answered and your days be filled with love and laughter. 🌟
+      </p>
+      <p class="msg-sign">— With love &amp; warm wishes —</p>
+    </div>
+    <button class="surprise-btn" onclick="triggerSurprise()">🎁 Open Your Eid Surprise</button>
+    <div style="margin-top:2.5rem;width:100%;display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <button class="share-btn" style="max-width:180px" onclick="copyCurrentLink()">📋 Copy This Link</button>
+      <button class="share-btn wa" style="max-width:180px" onclick="shareWACurrent()">💬 Send on WhatsApp</button>
+    </div>
+    <button class="share-btn" style="max-width:220px;margin-top:1rem" onclick="makeNewWish()">✨ Create Another Wish</button>
+  </section>
+
+  <div class="geo-border" style="margin-top:3rem"></div>
+  <footer class="footer">Built with 💛 &nbsp;|&nbsp; Eid Mubarak 1447 &nbsp;|&nbsp; Share the Joy 🌙</footer>
+</div>
+
+</body>
+</html>

@@ -30,6 +30,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   // Load from URL
   const params=new URLSearchParams(location.search);
   const name=params.get('name');
+  const creator=params.get('creator');
   if(name&&name.trim()){
     const displayName=decodeURIComponent(name).trim();
     document.getElementById('gen-section').style.display='none';
@@ -39,6 +40,15 @@ window.addEventListener('DOMContentLoaded',()=>{
     document.getElementById('wish-sub').textContent=`A special wish has been sent for you with love `;
     document.getElementById('wish-msg').textContent=
       `Dear ${displayName}, on this joyful occasion of Eid, may Allah bless you with happiness beyond measure, grant you health, prosperity, and peace. May your home be filled with laughter, your heart with gratitude, and your days with endless blessings. Eid Mubarak to you and your loved ones! 🌟`;
+    
+    // Hide sharing buttons for received wishes (only show for creators)
+    const receivedShareButtons = document.getElementById('received-wish-share');
+    if(receivedShareButtons && !creator){
+      receivedShareButtons.style.display = 'none';
+    } else if(receivedShareButtons && creator){
+      receivedShareButtons.style.display = 'flex';
+    }
+    
     setTimeout(()=>{launchFireworks(4);launchBalloons();},600);
     setTimeout(()=>launchFireworks(3),2000);
   }
@@ -220,10 +230,16 @@ function shareWA(){
   const name=btn.dataset.name||'You';
   window.open(`https://wa.me/?text=${encodeURIComponent(`🌙 Eid Mubarak ${name}! Here's your special Eid wish 💛 ${url}`)}`,'_blank');
 }
-function copyCurrentLink(){copyToClipboard(location.href)}
+function copyCurrentLink(){
+  const currentUrl = new URL(location.href);
+  currentUrl.searchParams.set('creator', 'true');
+  copyToClipboard(currentUrl.toString());
+}
 function shareWACurrent(){
   const name=new URLSearchParams(location.search).get('name')||'You';
-  window.open(`https://wa.me/?text=${encodeURIComponent(`🌙 Eid Mubarak ${name}! Here's your special Eid wish 💛 ${location.href}`)}`,'_blank');
+  const currentUrl = new URL(location.href);
+  currentUrl.searchParams.set('creator', 'true');
+  window.open(`https://wa.me/?text=${encodeURIComponent(`🌙 Eid Mubarak ${name}! Here's your special Eid wish 💛 ${currentUrl.toString()}`)}`,'_blank');
 }
 function makeNewWish(){
   history.pushState({},'',location.pathname);

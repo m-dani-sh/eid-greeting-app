@@ -198,13 +198,13 @@ async function generateWish(){
 
   // Save to Firebase
   try {
-    console.log("Attempting to save:", { username: name, date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString() });
+    // console.log("Attempting to save:", { username: name, date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString() });
     const docRef = await window.db.collection("wishes").add({
       username: name,
       date: new Date().toISOString().split('T')[0], // YYYY-MM-DD
       time: new Date().toLocaleTimeString()
     });
-    console.log("Document written with ID: ", docRef.id);
+    // console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }

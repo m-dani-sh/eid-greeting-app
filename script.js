@@ -35,8 +35,8 @@ window.addEventListener('DOMContentLoaded',()=>{
     document.getElementById('gen-section').style.display='none';
     const ws=document.getElementById('wish-section');
     ws.classList.add('visible');
-    document.getElementById('wish-heading').textContent=`Eid Mubarak, ${displayName}! 🌙`;
-    document.getElementById('wish-sub').textContent=`A special wish has been sent for you with love 💛`;
+    document.getElementById('wish-heading').textContent=`Eid Mubarak, ${displayName}! `;
+    document.getElementById('wish-sub').textContent=`A special wish has been sent for you with love `;
     document.getElementById('wish-msg').textContent=
       `Dear ${displayName}, on this joyful occasion of Eid, may Allah bless you with happiness beyond measure, grant you health, prosperity, and peace. May your home be filled with laughter, your heart with gratitude, and your days with endless blessings. Eid Mubarak to you and your loved ones! 🌟`;
     setTimeout(()=>{launchFireworks(4);launchBalloons();},600);
